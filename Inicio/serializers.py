@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import TipoUsuario, Usuario, Comuna, Region, Direccion, Venta, Categoria, TipoProd, Marca, Modelo, Producto, Detalle
 
+
 class TipoUsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = TipoUsuario

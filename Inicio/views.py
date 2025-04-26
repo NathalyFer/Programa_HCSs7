@@ -1,12 +1,16 @@
 from django.shortcuts import render,redirect
-from .models import Usuario,Direccion,Comuna,Region,TipoUsuario, Producto, Marca,Categoria,TipoProd,Marca
+from .models import Usuario,Direccion,Comuna,Region,TipoUsuario, Producto, Marca,Categoria,TipoProd,Marca,Venta,Modelo,Detalle
 from django.contrib import messages
 from .Carrito import Carrito
+from rest_framework import viewsets
+from .serializers import TipoUsuarioSerializer, UsuarioSerializer, ComunaSerializer, RegionSerializer, DireccionSerializer, VentaSerializer, CategoriaSerializer, TipoProdSerializer, MarcaSerializer, ModeloSerializer, ProductoSerializer, DetalleSerializer
+
 
 # Create your views here.
 def inicio(request):
 
     return render(request,'Inicio/index.html')
+
 def inicioadmin(request):
 
     return render(request,'Inicio/index_admin.html') 
@@ -62,6 +66,56 @@ def modificarPerfil(request,id):
     messages.success(request, '¡Perfil modificado correctamente!')
     return render (request,'Inicio/perfil-user.html',contexto)
 
+# api rest framework
+class TipoUsuarioViewSet(viewsets.ModelViewSet):
+    queryset = TipoUsuario.objects.all()
+    serializer_class = TipoUsuarioSerializer    
+
+class UsuarioViewSet(viewsets.ModelViewSet):
+    queryset = Usuario.objects.all()
+    serializer_class = UsuarioSerializer    
+
+
+# de ser necesario debemos crear un endpoint para cada modelo   
+class ComunaViewSet(viewsets.ModelViewSet):
+    queryset = Comuna.objects.all()
+    serializer_class = ComunaSerializer
+
+class RegionViewSet(viewsets.ModelViewSet): 
+    queryset = Region.objects.all()
+    serializer_class = RegionSerializer
+
+class DireccionViewSet(viewsets.ModelViewSet):
+    queryset = Direccion.objects.all()
+    serializer_class = DireccionSerializer
+
+class VentaViewSet(viewsets.ModelViewSet):
+    queryset = Venta.objects.all()
+    serializer_class = VentaSerializer
+
+class CategoriaViewSet(viewsets.ModelViewSet):
+    queryset = Categoria.objects.all()
+    serializer_class = CategoriaSerializer
+
+class TipoProdViewSet(viewsets.ModelViewSet):
+    queryset = TipoProd.objects.all()
+    serializer_class = TipoProdSerializer
+
+class MarcaViewSet(viewsets.ModelViewSet):
+    queryset = Marca.objects.all()
+    serializer_class = MarcaSerializer
+
+class ModeloViewSet(viewsets.ModelViewSet):
+    queryset = Modelo.objects.all()
+    serializer_class = ModeloSerializer
+
+class ProductoViewSet(viewsets.ModelViewSet):
+    queryset = Producto.objects.all()
+    serializer_class = ProductoSerializer
+
+class DetalleViewSet(viewsets.ModelViewSet):
+    queryset = Detalle.objects.all()
+    serializer_class = DetalleSerializer
 
 
 
