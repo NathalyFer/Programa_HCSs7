@@ -1,10 +1,29 @@
-from django.urls import path
+from django.urls import path, include
 from .views import iniciar,iniciar_sesion, inicio, inicioadmin, registrar_m, registrarse, newProd,addprod,vistamod,eliminarProducto,menuadmin,micadmin,tecladoadmin,mouseAdmin,ramAdmin,graficaAdmin,procesadorAdmin,mostrarTeclado,teclado,mostrarMic,micro,mostrarMouse,mouse,mostrarGrafica,grafica,mostrarRam,ram,mostrarProcesador,procesador,carrito,perfilusuario,edicionProducto,editarProducto, mostrarperfil, modificarPerfil ,agregar_producto,eliminar_producto,restar_producto,limpiar_producto
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework import routers
+from Inicio import views
+
+#enrutador de api rest
+router = routers.DefaultRouter()
+router.register(r'usuarios', views.UsuarioViewSet, basename='usuario')
+router.register(r'productos', views.ProductoViewSet, basename='producto')
+router.register(r'categorias', views.CategoriaViewSet, basename='categoria')
+router.register(r'tipousuarios', views.TipoUsuarioViewSet, basename='tipousuario')
+router.register(r'tipoproductos', views.TipoProdViewSet, basename='tipoproducto')
+router.register(r'marcas', views.MarcaViewSet, basename='marca')
+router.register(r'modelos', views.ModeloViewSet, basename='modelo')
+router.register(r'ventas', views.VentaViewSet, basename='venta')
+router.register(r'detalles', views.DetalleViewSet, basename='detalle')
+router.register(r'direcciones', views.DireccionViewSet, basename='direccion')
+router.register(r'regiones', views.RegionViewSet, basename='region')
+router.register(r'comunas', views.ComunaViewSet, basename='comuna')
 
 
 urlpatterns = [
+    path('api/', include(router.urls)),
+    
 
     #Pagina iniciar/ Solo carga pagina
     path('iniciar/',iniciar,name="iniciar"),
@@ -77,3 +96,4 @@ urlpatterns = [
     path('editarProducto/<idProducto>', editarProducto, name="editarProducto"),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
