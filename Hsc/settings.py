@@ -89,8 +89,8 @@ REST_FRAMEWORK={
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
-        'NAME': '127.0.0.1:1521/xe',
-        'USER': 'usuario',
+        'NAME': '127.0.0.1:1521/orcl',
+        'USER': 'C##usuario',
         'PASSWORD': 'usuario1',
         'TEST':{
             'USER': 'default_test',
