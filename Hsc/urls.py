@@ -18,9 +18,11 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api', include('Inicio.urls')),
+    path('api/v1/', include('Inicio.api_urls')), # API REST
+    path('', include('Inicio.urls')), # Paginas de la app
 ]
 
 if settings.DEBUG:
