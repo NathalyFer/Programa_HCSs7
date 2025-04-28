@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'Inicio',
 ]
 
@@ -90,9 +91,11 @@ REST_FRAMEWORK={
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
-        'NAME': '127.0.0.1:1521/orcl',
+        'NAME': 'XE',
         'USER': 'C##usuario',
         'PASSWORD': 'usuario1',
+        'HOST': '127.0.0.1',
+        'PORT': '1521',
         'TEST':{
             'USER': 'default_test',
             'TBLSPACE': 'default_test_tbls',
