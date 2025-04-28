@@ -397,6 +397,3 @@ def limpiar_producto(request,usuario):
     carrito.limpiar()
     return render(request,'Inicio/carrito.html',contexto)
 
-
-
-
